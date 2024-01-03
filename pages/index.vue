@@ -226,7 +226,7 @@ watch([selectedTypes, searchQuery], () => {
 
     <div class="flex flex-col md:flex-col divide-y-4">
       <div class="flex flex-wrap w-full md:w-full h-fit pb-8">
-        <div v-for="typedata in types" :key="typedata.nom" class="w-1/2 ld:w-1/3 p-2">
+        <div v-for="typedata in types" :key="typedata.nom" class="w-1/2 md:w-1/6 p-2">
           <div class="card bg-white rounded-lg shadow hover:shadow-md transition duration-300">
             <input type="checkbox" :id="'checkbox-' + typedata.nom" :checked="selectedTypes.includes(typedata.nom)"
               @change="() => toggleTypeSelection(typedata.nom)" class="hidden">
