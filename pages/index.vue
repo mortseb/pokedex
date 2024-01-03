@@ -144,6 +144,14 @@ watch([selectedTypes, searchQuery], () => {
 </script>
 <style></style>
 <template>
+  <div class="fixed top-1/2 right-5 z-50">
+    <a href="#" @click="scrollToPokedex"
+      class="text-white text-4xl bg-blue-500 hover:bg-blue-600 p-2 rounded-full shadow-lg">
+      ↓
+    </a>
+  </div>
+
+
   <div class="relative h-[500px] overflow-hidden h-screen w-full flex items-center justify-center">
     <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/banner.png');"></div>
 
@@ -162,10 +170,13 @@ watch([selectedTypes, searchQuery], () => {
     <div class="absolute inset-0 flex justify-center items-center">
       <div class="bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg p-5 rounded-lg">
         <h1 class="text-5xl md:text-9xl  font-bold text-white">MythiDex</h1>
+
+
+
       </div>
+
     </div>
   </div>
-
 
 
 
@@ -253,7 +264,7 @@ watch([selectedTypes, searchQuery], () => {
 
 
 
-  <div class="container mx-auto p-4" id="pokedexContainer">
+  <div class="container mx-auto p-4 pt-12" id="pokedexContainer">
     <ul v-if="pokemons && pokemons.length" class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-10 2xl:grid-cols-15 gap-8">
       <li v-for="pokemon in pokemons" :key="pokemon.id"
         class="w-1/10 transform transition duration-300 hover:scale-110 hover:shadow-lg">
