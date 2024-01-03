@@ -1,0 +1,109 @@
+.info-bulle {
+    display: none;
+    position: absolute;
+    /* autres styles */
+}
+
+.info-bulle:hover {
+    display: block;
+}
+
+.fixed-size-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.map-container {
+    position: relative;
+    width: 100%;
+    padding-top: (hauteur/largeur) * 100%;
+    /* Ratio de hauteur/largeur de l'image */
+}
+
+.map-image,
+.map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@font-face {
+    font-family: 'MaPolicePersonnalisée';
+    src: url('/fonts/MaPolicePersonnalisée.woff2') format('woff2'),
+        url('/fonts/MaPolicePersonnalisée.woff') format('woff');
+    font-weight: 400;
+    /* Poids normal */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MaPolicePersonnalisée';
+    src: url('/fonts/MaPolicePersonnalisée-Bold.woff2') format('woff2'),
+        url('/fonts/MaPolicePersonnalisée-Bold.woff') format('woff');
+    font-weight: 700;
+    /* Poids gras */
+    font-style: normal;
+}
+
+.toggle-button .toggle-background-ou {
+    background-color: blue;
+    transform: translateX(8px);
+}
+
+.toggle-button.active .toggle-background-ou {
+    background-color: purple;
+}
+
+
+.containergsap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+.text {
+    font-size: 5vw;
+    letter-spacing: -.01em;
+    line-height: 100%;
+    margin: 0;
+    width: 100%;
+    color: rgb(182, 182, 182, 0.2);
+    background: linear-gradient(to right, #b6b6b6, #b6b6b6) no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-size: 0%;
+    transition: background-size cubic-bezier(.1, .5, .5, 1) 0.5s;
+    border-bottom: 1px solid #2F2B28;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+}
+
+span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #4246ce;
+    color: #0D0D0D;
+    clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);
+    transform-origin: center;
+    transition: all cubic-bezier(.1, .5, .5, 1) 0.4s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.text:hover>span {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
