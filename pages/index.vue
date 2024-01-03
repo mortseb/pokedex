@@ -225,7 +225,7 @@ watch([selectedTypes, searchQuery], () => {
     </div>
 
     <div class="flex flex-col md:flex-col divide-y-4">
-      <div class="flex flex-wrap w-full md:w-full h-fit">
+      <div class="flex flex-wrap w-full md:w-full h-fit pb-8">
         <div v-for="typedata in types" :key="typedata.nom" class="w-1/6 ld:w-1/3 p-2">
           <div class="card bg-white rounded-lg shadow hover:shadow-md transition duration-300">
             <input type="checkbox" :id="'checkbox-' + typedata.nom" :checked="selectedTypes.includes(typedata.nom)"
@@ -240,7 +240,7 @@ watch([selectedTypes, searchQuery], () => {
       </div>
 
 
-      <div class="w-full md:w-full">
+      <div class="w-full md:w-full pt-8">
         <ul class="flex flex-wrap">
           <li v-for="pokemon in filteredPokemons" :key="pokemon.id" class="m-2 w-auto  md:w-1/12 lg:w-1/12	">
             <NuxtLink :to="`/pokemon/${pokemon.slug}`" class="block">
