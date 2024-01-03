@@ -142,9 +142,7 @@ watch([selectedTypes, searchQuery], () => {
 }, { deep: true, immediate: true });
 
 </script>
-<style>
-
-</style>
+<style></style>
 <template>
   <div class="relative h-[500px] overflow-hidden h-screen w-full flex items-center justify-center">
     <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/banner.png');"></div>
@@ -193,7 +191,7 @@ watch([selectedTypes, searchQuery], () => {
     </div>
 
     <div class="selected-types flex items-center p-4">
-      <h2 class="text-2xl font-semibold mr-3">Types sélectionnés :</h2>
+      <h2 class="text-2xl font-semibold mr-3">Types sélectionnés</h2>
       <div class="flex flex-wrap">
         <div v-for="types in selectedTypes" :key="types"
           class="bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 flex items-center">
@@ -205,7 +203,7 @@ watch([selectedTypes, searchQuery], () => {
 
 
 
-    <div class="flex">
+    <div class="flex flex-row md:flex-row">
       <div class="text-sm font-medium mr-2">ET</div>
       <label class="relative inline-flex items-center cursor-pointer mx-2">
         <input @click="toggleSelectionMode" type="checkbox" value="" class="sr-only peer">
@@ -215,10 +213,10 @@ watch([selectedTypes, searchQuery], () => {
       </label>
       <div class="text-sm font-medium mr-2">OU</div>
     </div>
-    <div class="flex">
 
-      <div class="flex flex-wrap w-1/3">
-        <div v-for="typedata in types" :key="typedata.nom" class="w-1/3 p-2">
+    <div class="flex flex-col md:flex-row">
+      <div class="flex flex-wrap w-full md:w-1/3 h-auto">
+        <div v-for="typedata in types" :key="typedata.nom" class="w-1/2 ld:w-1/3 p-2">
           <div class="card bg-white rounded-lg shadow hover:shadow-md transition duration-300">
             <input type="checkbox" :id="'checkbox-' + typedata.nom" :checked="selectedTypes.includes(typedata.nom)"
               @change="() => toggleTypeSelection(typedata.nom)" class="hidden">
@@ -232,13 +230,14 @@ watch([selectedTypes, searchQuery], () => {
       </div>
 
 
-      <div class="w-2/3">
+      <div class="w-full md:w-2/3">
         <ul class="flex flex-wrap">
-          <li v-for="pokemon in filteredPokemons" :key="pokemon.id" class="m-2">
+          <li v-for="pokemon in filteredPokemons" :key="pokemon.id" class="m-2 w-auto  md:w-1/4 lg:w-1/6">
             <NuxtLink :to="`/pokemon/${pokemon.slug}`" class="block">
-              <div class="overflow-hidden rounded-lg shadow-md bg-white hover:bg-gray-100 transition duration-300">
+              <div
+                class="flex flex-col items-center overflow-hidden rounded-lg shadow-md bg-white hover:bg-gray-100 transition duration-300">
                 <NuxtImg :src="pokemon.artwork.url" :alt="pokemon.nom"
-                  class="w-16 h-16 object-cover transition duration-300" />
+                  class="flex w-16 item-center h-16 object-cover transition duration-300" />
                 <div class="text-center ">
                   <h2 class="text-xs md:text-xs lg:text-xs text-center font-semibold">{{ pokemon.nom }}</h2>
                 </div>
