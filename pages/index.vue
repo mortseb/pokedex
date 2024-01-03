@@ -195,7 +195,7 @@ watch([selectedTypes, searchQuery], () => {
     <h1 class="text">REGISTRE<span><a href="#" @click="scrollToPokedex">LISTE DES CREATURES</a></span></h1>
 
   </div>
-  <div class="container mx-auto p-4 bg-white shadow-lg rounded-lg">
+  <div class="container mx-auto p-4 bg-white shadow-lg rounded-lg  " id="pokedexContainer">
     <div class="search-bar">
       <input v-model="searchQuery" type="text" placeholder="Rechercher un Pokémon...">
     </div>
@@ -213,7 +213,7 @@ watch([selectedTypes, searchQuery], () => {
 
 
 
-    <div class="flex flex-row md:flex-row justify-center md:w-1/3">
+    <div class="flex flex-row md:flex-row justify-center md:w-full">
       <div class="text-sm font-medium mr-2">ET</div>
       <label class="relative inline-flex items-center cursor-pointer mx-2">
         <input @click="toggleSelectionMode" type="checkbox" value="" class="sr-only peer">
@@ -224,9 +224,9 @@ watch([selectedTypes, searchQuery], () => {
       <div class="text-sm font-medium mr-2">OU</div>
     </div>
 
-    <div class="flex flex-col md:flex-row">
-      <div class="flex flex-wrap w-full md:w-1/3 h-fit">
-        <div v-for="typedata in types" :key="typedata.nom" class="w-1/2 ld:w-1/3 p-2">
+    <div class="flex flex-col md:flex-col divide-y-4">
+      <div class="flex flex-wrap w-full md:w-full h-fit">
+        <div v-for="typedata in types" :key="typedata.nom" class="w-1/6 ld:w-1/3 p-2">
           <div class="card bg-white rounded-lg shadow hover:shadow-md transition duration-300">
             <input type="checkbox" :id="'checkbox-' + typedata.nom" :checked="selectedTypes.includes(typedata.nom)"
               @change="() => toggleTypeSelection(typedata.nom)" class="hidden">
@@ -240,9 +240,9 @@ watch([selectedTypes, searchQuery], () => {
       </div>
 
 
-      <div class="w-full md:w-2/3">
+      <div class="w-full md:w-full">
         <ul class="flex flex-wrap">
-          <li v-for="pokemon in filteredPokemons" :key="pokemon.id" class="m-2 w-auto  md:w-1/4 lg:w-1/6">
+          <li v-for="pokemon in filteredPokemons" :key="pokemon.id" class="m-2 w-auto  md:w-1/12 lg:w-1/12	">
             <NuxtLink :to="`/pokemon/${pokemon.slug}`" class="block">
               <div
                 class="flex flex-col items-center overflow-hidden rounded-lg shadow-md bg-white hover:bg-gray-100 transition duration-300">
@@ -259,28 +259,6 @@ watch([selectedTypes, searchQuery], () => {
       </div>
     </div>
 
-  </div>
-
-
-
-  <div class="container mx-auto p-4 pt-12" id="pokedexContainer">
-    <ul v-if="pokemons && pokemons.length" class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-10 2xl:grid-cols-15 gap-8">
-      <li v-for="pokemon in pokemons" :key="pokemon.id"
-        class="w-1/10 transform transition duration-300 hover:scale-110 hover:shadow-lg">
-        <NuxtLink :to="`/pokemon/${pokemon.slug}`" class="block">
-          <div class="overflow-hidden rounded-lg shadow-md bg-white hover:bg-gray-100 transition duration-300">
-            <NuxtImg :src="pokemon.artwork.url" :alt="pokemon.nom"
-              class="w-full h-full object-cover transition duration-300" />
-            <div class="text-center ">
-              <h2 class="text-m md:text-l lg:text-l text-center font-semibold">{{ pokemon.nom }}</h2>
-            </div>
-          </div>
-        </NuxtLink>
-      </li>
-    </ul>
-    <div v-else class="text-center">
-      <p>Loading...</p>
-    </div>
   </div>
 </template>
 
