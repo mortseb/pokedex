@@ -161,7 +161,7 @@ watch([selectedTypes, searchQuery], () => {
 
     <div class="absolute inset-0 flex justify-center items-center">
       <div class="bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg p-5 rounded-lg">
-        <h1 class="text-9xl font-bold text-white">MythiDex</h1>
+        <h1 class="text-5xl md:text-9xl  font-bold text-white">MythiDex</h1>
       </div>
     </div>
   </div>
@@ -171,7 +171,7 @@ watch([selectedTypes, searchQuery], () => {
 
 
 
-  <div class="containergsap">
+  <div class="containergsap h-auto my-16">
     <h1 class="text uppercase">pokédex<span class="uppercase">PLUS DE 50 pokémons</span></h1>
     <h1 class="text">MONDIAL<span>1 POKEMON = 1 PAYS</span></h1>
     <h1 class="text">CREE PAR IA.<span>POKEMONS GENERES PAR CHATGPT</span></h1>
@@ -215,7 +215,7 @@ watch([selectedTypes, searchQuery], () => {
     </div>
 
     <div class="flex flex-col md:flex-row">
-      <div class="flex flex-wrap w-full md:w-1/3 h-auto">
+      <div class="flex flex-wrap w-full md:w-1/3 h-fit">
         <div v-for="typedata in types" :key="typedata.nom" class="w-1/2 ld:w-1/3 p-2">
           <div class="card bg-white rounded-lg shadow hover:shadow-md transition duration-300">
             <input type="checkbox" :id="'checkbox-' + typedata.nom" :checked="selectedTypes.includes(typedata.nom)"
@@ -254,7 +254,7 @@ watch([selectedTypes, searchQuery], () => {
 
 
   <div class="container mx-auto p-4" id="pokedexContainer">
-    <ul v-if="pokemons && pokemons.length" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 2xl:grid-cols-10 gap-8">
+    <ul v-if="pokemons && pokemons.length" class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-10 2xl:grid-cols-15 gap-8">
       <li v-for="pokemon in pokemons" :key="pokemon.id"
         class="w-1/10 transform transition duration-300 hover:scale-110 hover:shadow-lg">
         <NuxtLink :to="`/pokemon/${pokemon.slug}`" class="block">
