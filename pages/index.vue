@@ -195,7 +195,7 @@ watch([selectedTypes, searchQuery], () => {
     <h1 class="text">REGISTRE<span><a href="#" @click="scrollToPokedex">LISTE DES CREATURES</a></span></h1>
 
   </div>
-  <div class="container mx-auto p-4 bg-white shadow-lg rounded-lg  " id="pokedexContainer">
+  <div class="container mx-auto p-4 bg-white shadow-lg rounded-lg pb-96" id="pokedexContainer">
     <div class="search-bar">
       <input v-model="searchQuery" type="text" placeholder="Rechercher un Pokémon...">
     </div>
