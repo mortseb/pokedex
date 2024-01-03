@@ -195,7 +195,7 @@ watch([selectedTypes, searchQuery], () => {
     <h1 class="text">REGISTRE<span><a href="#" @click="scrollToPokedex">LISTE DES CREATURES</a></span></h1>
 
   </div>
-  <div class="container mx-auto p-4 bg-white shadow-lg rounded-lg pb-96" id="pokedexContainer">
+  <div class="container mx-auto p-4 bg-white shadow-lg rounded-lg pb-96 " id="pokedexContainer">
     <div class="search-bar">
       <input v-model="searchQuery" type="text" placeholder="Rechercher un Pokémon...">
     </div>
@@ -226,7 +226,7 @@ watch([selectedTypes, searchQuery], () => {
 
     <div class="flex flex-col md:flex-col divide-y-4">
       <div class="flex flex-wrap w-full md:w-full h-fit pb-8">
-        <div v-for="typedata in types" :key="typedata.nom" class="w-1/6 ld:w-1/3 p-2">
+        <div v-for="typedata in types" :key="typedata.nom" class="w-1/2 ld:w-1/3 p-2">
           <div class="card bg-white rounded-lg shadow hover:shadow-md transition duration-300">
             <input type="checkbox" :id="'checkbox-' + typedata.nom" :checked="selectedTypes.includes(typedata.nom)"
               @change="() => toggleTypeSelection(typedata.nom)" class="hidden">
