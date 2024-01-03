@@ -142,18 +142,17 @@ watch([selectedTypes, searchQuery], () => {
 }, { deep: true, immediate: true });
 
 </script>
-<style></style>
 <template>
   <div class="fixed top-1/2 right-5 z-50">
-    <a href="#" @click="scrollToPokedex"
+    <a href="#" ref="scrollArrow" @click="scrollToPokedex"
       class="text-white text-4xl bg-blue-500 hover:bg-blue-600 p-2 rounded-full shadow-lg">
       ↓
     </a>
   </div>
 
 
-  <div class="relative h-[500px] overflow-hidden h-screen w-full flex items-center justify-center">
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/banner.png');"></div>
+  <div class=" h-[500px] overflow-hidden h-screen w-full flex items-center justify-center ">
+    <div class="absolute inset-0 bg-cover bg-center w-full" style="background-image: url('/banner.png');"></div>
 
     <!-- Dégradé en haut -->
     <div class="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-[#000000] to-transparent"></div>
