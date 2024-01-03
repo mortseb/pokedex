@@ -203,7 +203,7 @@ watch([selectedTypes, searchQuery], () => {
 
 
 
-    <div class="flex flex-row md:flex-row">
+    <div class="flex flex-row md:flex-row justify-center md:w-1/3">
       <div class="text-sm font-medium mr-2">ET</div>
       <label class="relative inline-flex items-center cursor-pointer mx-2">
         <input @click="toggleSelectionMode" type="checkbox" value="" class="sr-only peer">
