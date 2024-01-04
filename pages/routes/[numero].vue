@@ -9,7 +9,13 @@ const query = gql`
         slug
         description
         artwork {
-          url
+          url(
+            transformation: {
+              image: { resize: { fit: crop, height: 512, width: 512 } }
+              document: { output: { format: webp } }
+        }
+      )
+    
         }
       }
     }
@@ -34,18 +40,17 @@ watch(() => data.value, (newValue) => {
 <template>
   <div v-if="routeDetails && routeDetails.pokemons">
     <h1> {{ routeDetails.nom }}</h1>
-    <div class="pokemons-container flex flex-col md:flex-row">
+    <div class="pokemons-container flex flex-wrap flex-col md:flex-row">
       <div v-for="pokemon in routeDetails.pokemons" :key="pokemon.slug"
-        class="pokemon-card bg-black m-4 h-fit-content w-fit-content p-4 rounded">
+        class="pokemon-card m-6 h-32 w-32 rounded hover:blur-none transitionshadow-md bg-black hover:bg-gray-100 transition-opacity duration-1500">
         <NuxtLink :to="`/pokemon/${pokemon.slug}`" class="block cursor-pointer">
           <div
-            class="flex flex-col items-center overflow-hidden rounded-lg shadow-md bg-white hover:bg-gray-100  transition duration-300">
+            class="flex flex-col items-center overflow-hidden rounded-lg shadow-md bg-black hover:bg-gray-100 transition-opacity duration-1500">
             <NuxtImg :src="pokemon.artwork.url" :alt="pokemon.nom"
-              class="flex item-center object-cover transition duration-300" />
+              class="flex item-center object-cover blur-xl hover:blur-none transition duration-300" />
             <div class="text-center ">
               <h2 class="text-xl md:text-xl lg:text-xl text-center font-semibold">{{ pokemon.nom }}</h2>
             </div>
-
           </div>
         </NuxtLink>
       </div>
