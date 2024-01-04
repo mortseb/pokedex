@@ -44,8 +44,8 @@ console.log(data.value.pokemon);
 </script>
 
 <template>
-  <div v-if="pokemon" class="flex flex-row w-full bg-slate-200 py-6 sm:py-12 mt-8">
-    <div class="w-1/3">
+  <div v-if="pokemon" class="flex flex-row w-full bg-slate-200 py-6 sm:py-12 mt-8	">
+    <div class="w-1/3 p-3">
 
       <NuxtImg :src="pokemon.artwork.url" :alt="pokemon.nom" class="h-full w-full" />
     </div>
