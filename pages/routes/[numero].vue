@@ -34,10 +34,20 @@ watch(() => data.value, (newValue) => {
 <template>
   <div v-if="routeDetails && routeDetails.pokemons">
     <h1> {{ routeDetails.nom }}</h1>
-    <div class="pokemons-container">
-      <div v-for="pokemon in routeDetails.pokemons" :key="pokemon.slug" class="pokemon-card h-44 w-44 p-4">
-        <h2 class="text-white">{{ pokemon.nom }}</h2>
-        <img :src="pokemon.artwork.url" :alt="pokemon.nom" />
+    <div class="pokemons-container flex flex-col md:flex-row">
+      <div v-for="pokemon in routeDetails.pokemons" :key="pokemon.slug"
+        class="pokemon-card bg-black m-4 h-fit-content w-fit-content p-4 rounded">
+        <NuxtLink :to="`/pokemon/${pokemon.slug}`" class="block cursor-pointer">
+          <div
+            class="flex flex-col items-center overflow-hidden rounded-lg shadow-md bg-white hover:bg-gray-100  transition duration-300">
+            <NuxtImg :src="pokemon.artwork.url" :alt="pokemon.nom"
+              class="flex item-center object-cover transition duration-300" />
+            <div class="text-center ">
+              <h2 class="text-xl md:text-xl lg:text-xl text-center font-semibold">{{ pokemon.nom }}</h2>
+            </div>
+
+          </div>
+        </NuxtLink>
       </div>
     </div>
   </div>

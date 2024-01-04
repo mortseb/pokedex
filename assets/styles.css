@@ -1,13 +1,3 @@
-.info-bulle {
-    display: none;
-    position: absolute;
-    /* autres styles */
-}
-
-.info-bulle:hover {
-    display: block;
-}
-
 .fixed-size-image {
     max-width: 100%;
     height: auto;
@@ -29,24 +19,6 @@
     height: 100%;
 }
 
-@font-face {
-    font-family: 'MaPolicePersonnalisée';
-    src: url('/fonts/MaPolicePersonnalisée.woff2') format('woff2'),
-        url('/fonts/MaPolicePersonnalisée.woff') format('woff');
-    font-weight: 400;
-    /* Poids normal */
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'MaPolicePersonnalisée';
-    src: url('/fonts/MaPolicePersonnalisée-Bold.woff2') format('woff2'),
-        url('/fonts/MaPolicePersonnalisée-Bold.woff') format('woff');
-    font-weight: 700;
-    /* Poids gras */
-    font-style: normal;
-}
-
 .toggle-button .toggle-background-ou {
     background-color: blue;
     transform: translateX(8px);
@@ -65,12 +37,12 @@
 }
 
 .text {
-    font-size: 5vw;
+    /* Styles communs */
     letter-spacing: -.01em;
     line-height: 100%;
     margin: 0;
     width: 100%;
-    color: rgb(182, 182, 182, 0.2);
+    color: rgba(182, 182, 182, 0.2);
     background: linear-gradient(to right, #b6b6b6, #b6b6b6) no-repeat;
     -webkit-background-clip: text;
     background-clip: text;
@@ -82,6 +54,13 @@
     align-items: flex-start;
     justify-content: center;
     position: relative;
+    font-size: 5vw;
+}
+
+@media screen and (min-width: 2000px) {
+    .text {
+        font-size: 2vw;
+    }
 }
 
 span {

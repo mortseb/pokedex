@@ -161,7 +161,7 @@ watch([selectedTypes, searchQuery], () => {
   </div>
 
 
-  <div class=" h-[500px] overflow-hidden h-screen w-full flex items-center justify-center ">
+  <div class="h-[500px] overflow-hidden h-screen w-full flex items-center justify-center ">
     <div class="absolute inset-0 bg-cover bg-center w-full" style="background-image: url('/banner.png');"></div>
 
     <!-- Dégradé en haut -->
@@ -191,10 +191,10 @@ watch([selectedTypes, searchQuery], () => {
 
 
 
-  <div class="containergsap h-auto my-16">
+  <div class="containergsap h-auto my-16 w-full">
     <h1 class="text uppercase">pokédex<span class="uppercase">PLUS DE 50 pokémons</span></h1>
-    <h1 class="text">MONDIAL<span>1 POKEMON = 1 PAYS</span></h1>
-    <h1 class="text">CREE PAR IA.<span>POKEMONS GENERES PAR CHATGPT</span></h1>
+    <h1 class="text">MONDIAL<span class="uppercase">1 POKéMON = 1 PAYS</span></h1>
+    <h1 class="text uppercase">CRéé PAR IA.<span class="uppercase">POKéMONS GéNéRéS PAR CHATGPT</span></h1>
     <br> <br> <br> <br>
     <h1 class="text">SAFARI MORTSEB<span>
         <NuxtLink to="/carte/">

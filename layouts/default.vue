@@ -13,7 +13,7 @@
                 </NuxtLink>
             </div>
         </nav>
-        <div class="container mx-auto px-3">
+        <div class="container mx-auto">
             <slot />
         </div>
     </div>

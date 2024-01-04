@@ -23,7 +23,8 @@ h1 {
 
 .container-map {
     position: relative;
-    max-width: 50vw;
+    max-width: 1024px;
+    max-height: 1024px;
     margin-right: auto;
     margin-left: auto;
     border: 2px solid #ccc;
@@ -60,7 +61,7 @@ h1 {
 
 
 <template>
-    <div class="container-map">
+    <div class="container-map max-w-max-content">
         <img alt="" src="/svg/carte.png">
 
         <svg class="mappa-transparent" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
