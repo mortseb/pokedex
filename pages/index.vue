@@ -45,7 +45,12 @@ query Combined {
       hex
     }
     image {
-      url
+        url(
+        transformation: {
+          image: { resize: { fit: crop, height: 1024, width: 1024 } }
+          document: { output: { format: webp } }
+        }
+      )
     }
   }
 }
