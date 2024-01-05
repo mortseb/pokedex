@@ -194,7 +194,7 @@ watch([selectedTypes, searchQuery], () => {
     <!-- Titre -->
     <div class="absolute inset-0 flex justify-center items-center">
       <div class="bg-black/30 backdrop-filter backdrop-blur-lg p-5 rounded-full">
-        <h1 class="text-5xl md:text-9xl  font-bold text-white titresite">MythiDex</h1>
+        <h1 class="text-5xl md:text-[180px] font-bold text-white titresite">MythiDex</h1>
       </div>
 
     </div>
