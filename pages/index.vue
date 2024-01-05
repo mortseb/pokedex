@@ -231,7 +231,7 @@ watch([selectedTypes, searchQuery], () => {
     <!-- Fond blanc - Div global -->
     <div class="bg-white/30 backdrop-blur p-4 md:h-[1200px] shadow-lg rounded-lg">
       <!-- Fond noir - Div des éléments de recherche -->
-      <div class="bg-black/80 backdrop-blur p-4 pb-0 rounded-3xl h-fit mb-8">
+      <div class="bg-black/80 backdrop-blur p-4 pb-0 rounded-3xl h-fit mb-8 n">
         <div class="selected-types flex items-center justify-center p-4">
           <div class="w-2/3 max-w-md text-center">
             <!-- Barre de recherche -->
@@ -259,16 +259,16 @@ watch([selectedTypes, searchQuery], () => {
         </div>
 
         <!-- Liste des types sélectionnables -->
-        <div class="flex flex-col md:flex-col divide-y-4">
-          <div class="flex flex-wrap w-full md:w-full h-fit pb-8">
-            <div v-for="typedata in types" :key="typedata.nom" class="w-1/2 md:w-1/6 p-2">
+        <div class="flex flex-col md:flex-col divide-y-4 ">
+          <div class="flex flex-wrap w-full md:w-full h-fit pb-8 justify-center">
+            <div v-for="typedata in types" :key="typedata.nom" class=" w-36  p-2">
               <div class="card bg-white rounded-lg shadow hover:shadow-md transition duration-300">
                 <input type="checkbox" :id="'checkbox-' + typedata.nom" :checked="selectedTypes.includes(typedata.nom)"
                   @change="() => toggleTypeSelection(typedata.nom)" class="hidden">
                 <label :for="'checkbox-' + typedata.nom" class="flex items-center cursor-pointer p-4 "
                   :class="{ ' rounded-lg shadow hover:shadow-md transition duration-300 bg-green-300 border-green-500': selectedTypes.includes(typedata.nom) }">
                   <img :src="typedata.image.url" :alt="typedata.nom" class="w-8 h-8 rounded-full mr-3 object-cover">
-                  <div class="text-sm md:text-xl font-medium">{{ typedata.nom }}</div>
+                  <div class="text-sm ld:text-xl font-medium">{{ typedata.nom }}</div>
 
                 </label>
               </div>
@@ -286,12 +286,12 @@ watch([selectedTypes, searchQuery], () => {
       </div>
 
       <!-- Résultats de la recherche - Liste pleine si pas de recherche -->
-      <div class="w-full md:w-full pt-8 h-[580px] overflow-auto">
+      <div class="w-full md:w-full pt-8 max-h-[500px] overflow-auto">
         <ul class="flex flex-wrap justify-center">
           <li v-for="pokemon in filteredPokemons" :key="pokemon.id" class="m-2 w-32  md:w-1/6">
             <NuxtLink :to="`/pokemon/${pokemon.slug}`" class="block">
               <div
-                class="flex flex-col items-center overflow-hidden rounded-lg shadow-md bg-white/50 p-2 hover:bg-gray-100 transition duration-300">
+                class="flex flex-col items-center rounded-lg shadow-md bg-white/50 p-2 hover:bg-gray-100 transition duration-300">
                 <NuxtImg :src="pokemon.artwork.url" :alt="pokemon.nom"
                   class="flex w-auto item-center h-auto object-cover transition duration-300" />
                 <div class="text-center ">
