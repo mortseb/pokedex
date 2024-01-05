@@ -15,6 +15,7 @@ query Combined {
     id
     nom
     poids
+    pays
     pointsDeVie
     publishedAt
     slug
@@ -146,6 +147,7 @@ const scrollToPokedex = (event) => {
 watch([selectedTypes, searchQuery], () => {
   let tempFiltered = pokemons.value;
 
+  // Filtre par types sélectionnés
   if (selectedTypes.value.length > 0) {
     tempFiltered = tempFiltered.filter(pokemon =>
       selectionMode.value === 'ou'
@@ -155,14 +157,17 @@ watch([selectedTypes, searchQuery], () => {
     );
   }
 
+  // Filtre par nom ou pays
   if (searchQuery.value) {
     tempFiltered = tempFiltered.filter(pokemon =>
-      pokemon.nom.toLowerCase().includes(searchQuery.value.toLowerCase())
+      pokemon.nom.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+      pokemon.pays.toLowerCase().includes(searchQuery.value.toLowerCase())
     );
   }
 
   filteredPokemons.value = tempFiltered;
 }, { deep: true, immediate: true });
+
 
 </script>
 <style></style>
