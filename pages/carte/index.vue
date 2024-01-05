@@ -1,15 +1,11 @@
 
-<template>
-    <!-- Carte de base + routes en SVG -->
 
+<!-- Carte de base + routes en SVG -->
+<template>
     <div
         class="max-w-max-content relative max-w-[1024px] max-h-[1024px] mx-auto border-2 border-solid border-slate-200 box-border">
-
-
         <!-- Carte de base -->
         <img alt="" src="/svg/carte.png">
-
-
         <!-- SVG contenant chaque route -->
         <svg class="mappa-transparent" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
 
