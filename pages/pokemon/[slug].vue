@@ -25,14 +25,23 @@ query Pokemon($slug: String!) {
     types {
       nom
       image {
-        url
+      url(
+        transformation: {
+          image: { resize: { fit: crop, height: 512, width: 512 } }
+          document: { output: { format: webp } }
+        }
+      )
       }
     }
     attaques1 {
       nom
       image {
-        url
-      }
+      url(
+        transformation: {
+          image: { resize: { fit: crop, height: 512, width: 512 } }
+          document: { output: { format: webp } }
+        }
+      )      }
       types {
         nom
         image {

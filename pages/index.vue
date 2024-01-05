@@ -34,8 +34,12 @@ query Combined {
     types {
       nom
       image {
-        url
-      }
+      url(
+        transformation: {
+          image: { resize: { fit: crop, height: 512, width: 512 } }
+          document: { output: { format: webp } }
+        }
+      )      }
     }
 
   }
@@ -47,7 +51,7 @@ query Combined {
     image {
         url(
         transformation: {
-          image: { resize: { fit: crop, height: 1024, width: 1024 } }
+          image: { resize: { fit: crop, height: 512, width: 512 } }
           document: { output: { format: webp } }
         }
       )
