@@ -26,7 +26,7 @@ query Combined {
     artwork {
         url(
         transformation: {
-          image: { resize: { fit: crop, height: 1024, width: 1024 } }
+          image: { resize: { fit: crop, height: 512, width: 512 } }
           document: { output: { format: webp } }
         }
       )
@@ -205,61 +205,73 @@ watch([selectedTypes, searchQuery], () => {
     <h1 class="text">REGISTRE<span><a href="#" @click="scrollToPokedex">LISTE DES CREATURES</a></span></h1>
 
   </div>
-  <div class="container mx-auto p-4 bg-white shadow-lg rounded-lg pb-96 " id="pokedexContainer">
-    <div class="search-bar">
-      <input v-model="searchQuery" type="text" placeholder="Rechercher un Pokémon...">
-    </div>
+  <div class="container mx-auto p-4 shadow-lg rounded-lg pb-96 bg-cover bg-center w-full md:h-[1232px]"
+    style="background-image: url('/search-bg.png');" id="pokedexContainer">
+    <div class="bg-white/30 backdrop-blur p-4 md:h-[1200px] shadow-lg rounded-lg">
 
-    <div class="selected-types flex items-center p-4">
-      <h2 class="text-2xl font-semibold mr-3">Types sélectionnés</h2>
-      <div class="flex flex-wrap">
-        <div v-for="types in selectedTypes" :key="types"
-          class="bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 flex items-center">
-          <div class="cursor-pointer mr-1" @click="removeType(types)">✕</div>
-          {{ types }}
+
+
+
+
+      <div class="bg-black/80 backdrop-blur p-4 pb-0 rounded-3xl h-fit mb-8">
+        <div class="selected-types flex items-center justify-center p-4">
+          <div class="w-2/3 max-w-md text-center"> <!-- Conteneur avec une largeur maximale -->
+            <div class="search-bar">
+              <input v-model="searchQuery" type="text" placeholder="Rechercher un Pokémon..."
+                class="rounded-3xl pl-2 w-full">
+              <!-- Barre de recherche prenant toute la largeur du conteneur -->
+            </div>
+            <h1 class="text-2xl font-semibold mt-3">Types :</h1>
+            <div class="flex flex-wrap justify-center mt-2"> <!-- Centrer les types sélectionnés -->
+              <div v-for="types in selectedTypes" :key="types"
+                class="bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded flex items-center mb-2">
+                <div class="cursor-pointer mr-1" @click="removeType(types)">✕</div>
+                {{ types }}
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-
-
-    <div class="flex flex-row md:flex-row justify-center md:w-full">
-      <div class="text-sm font-medium mr-2">ET</div>
-      <label class="relative inline-flex items-center cursor-pointer mx-2">
-        <input @click="toggleSelectionMode" type="checkbox" value="" class="sr-only peer">
-        <div
-          class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
-        </div>
-      </label>
-      <div class="text-sm font-medium mr-2">OU</div>
-    </div>
-
-    <div class="flex flex-col md:flex-col divide-y-4">
-      <div class="flex flex-wrap w-full md:w-full h-fit pb-8">
-        <div v-for="typedata in types" :key="typedata.nom" class="w-1/2 md:w-1/6 p-2">
-          <div class="card bg-white rounded-lg shadow hover:shadow-md transition duration-300">
-            <input type="checkbox" :id="'checkbox-' + typedata.nom" :checked="selectedTypes.includes(typedata.nom)"
-              @change="() => toggleTypeSelection(typedata.nom)" class="hidden">
-            <label :for="'checkbox-' + typedata.nom" class="flex items-center cursor-pointer p-4"
-              :class="{ 'bg-green-200 border-green-500': selectedTypes.includes(typedata.nom) }">
-              <img :src="typedata.image.url" :alt="typedata.nom" class="w-8 h-8 rounded-full mr-1 object-cover">
-              <div class="text-xs font-medium">{{ typedata.nom }}</div>
+        <div class="flex flex-row md:flex-row justify-center md:w-full mb-8 ">
+          <div class="flex flex-row md:flex-row justify-center bg-white w-fit p-4 rounded-3xl">
+            <div class="text-sm font-medium mr-2">ET</div>
+            <label class="relative inline-flex items-center cursor-pointer mx-2">
+              <input @click="toggleSelectionMode" type="checkbox" value="" class="sr-only peer">
+              <div
+                class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+              </div>
             </label>
+            <div class="text-sm font-medium mr-2">OU</div>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-col divide-y-4">
+          <div class="flex flex-wrap w-full md:w-full h-fit pb-8">
+            <div v-for="typedata in types" :key="typedata.nom" class="w-1/2 md:w-1/6 p-2">
+              <div class="card bg-white rounded-lg shadow hover:shadow-md transition duration-300">
+                <input type="checkbox" :id="'checkbox-' + typedata.nom" :checked="selectedTypes.includes(typedata.nom)"
+                  @change="() => toggleTypeSelection(typedata.nom)" class="hidden">
+                <label :for="'checkbox-' + typedata.nom" class="flex items-center cursor-pointer p-4 "
+                  :class="{ ' rounded-lg shadow hover:shadow-md transition duration-300 bg-green-300 border-green-500': selectedTypes.includes(typedata.nom) }">
+                  <img :src="typedata.image.url" :alt="typedata.nom" class="w-8 h-8 rounded-full mr-3 object-cover">
+                  <div class="text-bg md:text-xl font-medium">{{ typedata.nom }}</div>
+
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-
-      <div class="w-full md:w-full pt-8">
-        <ul class="flex flex-wrap">
-          <li v-for="pokemon in filteredPokemons" :key="pokemon.id" class="m-2 w-auto  md:w-1/12 lg:w-1/12	">
+      <div class="w-full md:w-full pt-8 h-[580px] overflow-auto">
+        <ul class="flex flex-wrap justify-center">
+          <li v-for="pokemon in filteredPokemons" :key="pokemon.id" class="m-2 w-32  md:w-1/6">
             <NuxtLink :to="`/pokemon/${pokemon.slug}`" class="block">
               <div
-                class="flex flex-col items-center overflow-hidden rounded-lg shadow-md bg-white hover:bg-gray-100 transition duration-300">
+                class="flex flex-col items-center overflow-hidden rounded-lg shadow-md bg-black p-2 hover:bg-gray-100 transition duration-300">
                 <NuxtImg :src="pokemon.artwork.url" :alt="pokemon.nom"
-                  class="flex w-16 item-center h-16 object-cover transition duration-300" />
+                  class="flex w-auto item-center h-auto object-cover transition duration-300" />
                 <div class="text-center ">
-                  <h2 class="text-xs md:text-xs lg:text-xs text-center font-semibold">{{ pokemon.nom }}</h2>
+                  <h2 class="text-xs md:text-xl lg:text-xl text-center font-semibold">{{ pokemon.nom }}</h2>
                 </div>
 
               </div>
@@ -268,7 +280,6 @@ watch([selectedTypes, searchQuery], () => {
         </ul>
       </div>
     </div>
-
   </div>
 </template>
 

@@ -9,7 +9,7 @@ query Pokemon($slug: String!) {
     artwork {
       url(
         transformation: {
-          image: { resize: { fit: crop, height: 1024, width: 1024 } }
+          image: { resize: { fit: crop, height: 512, width: 512 } }
           document: { output: { format: webp } }
         }
       )
@@ -75,10 +75,11 @@ console.log(data.value.pokemon);
 </script>
 
 <template>
-  <div v-if="pokemon" class="flex flex-row w-full bg-slate-200 rounded py-6 sm:py-12 mt-8	">
+  <div v-if="pokemon" :style="{ 'border-color': pokemon.couleur.hex, 'border-style': 'solid', 'border-width': '15px' }"
+    class="flex flex-row w-full bg-slate-200 rounded py-6 sm:py-12 mt-8 h-[600px] rounded-3xl">
     <div class="flex w-auto w-1/3 p-3">
 
-      <NuxtImg :src="pokemon.artwork.url" :alt="pokemon.nom" class="h-auto w-full rounded" />
+      <NuxtImg :src="pokemon.artwork.url" :alt="pokemon.nom" class="h-full w-full rounded-xl shadow-lg ml-12 mr-12" />
     </div>
     <div class="flex flex-col w-2/3">
       <div class=" flex justify-center items-start">
@@ -200,24 +201,24 @@ console.log(data.value.pokemon);
           <div v-if="sectionVisible === 'attaques'">
             <div class="flex">
               <h3 class="font-mono md:text-lg font-bold w-12"> {{ pokemon.attaques1[0].degats }}</h3>
-              <NuxtImg :src="pokemon.attaques1[0].types[0].image.url" :alt="pokemon.nom" class="h-8 w-8 rounded" />
+              <NuxtImg :src="pokemon.attaques1[0].types[0].image.url" :alt="pokemon.nom" class="h-8 w-8 rounded mr-2" />
               <h3 class="font-mono md:text-lg font-bold"> {{ pokemon.attaques1[0].nom }}</h3>
             </div>
             <div class="flex">
               <h3 class="font-mono md:text-lg font-bold w-12"> {{ pokemon.attaques1[1].degats }}</h3>
 
-              <NuxtImg :src="pokemon.attaques1[1].types[0].image.url" :alt="pokemon.nom" class="h-8 w-8 rounded" />
+              <NuxtImg :src="pokemon.attaques1[1].types[0].image.url" :alt="pokemon.nom" class="h-8 w-8 rounded mr-2" />
               <h3 class="font-mono md:text-lg font-bold"> {{ pokemon.attaques1[1].nom }}</h3>
             </div>
             <div class="flex">
               <h3 class="font-mono md:text-lg font-bold w-12"> {{ pokemon.attaques1[2].degats }}</h3>
-              <NuxtImg :src="pokemon.attaques1[2].types[0].image.url" :alt="pokemon.nom" class="h-8 w-8 rounded" />
+              <NuxtImg :src="pokemon.attaques1[2].types[0].image.url" :alt="pokemon.nom" class="h-8 w-8 rounded mr-2" />
               <h3 class="font-mono md:text-lg font-bold"> {{ pokemon.attaques1[2].nom }}</h3>
             </div>
             <div class="flex">
               <h3 class="font-mono md:text-lg font-bold w-12"> {{ pokemon.attaques1[3].degats }}</h3>
 
-              <NuxtImg :src="pokemon.attaques1[3].types[0].image.url" :alt="pokemon.nom" class="h-8 w-8 rounded" />
+              <NuxtImg :src="pokemon.attaques1[3].types[0].image.url" :alt="pokemon.nom" class="h-8 w-8 rounded mr-2" />
               <h3 class="font-mono md:text-lg font-bold"> {{ pokemon.attaques1[3].nom }}</h3>
             </div>
 
@@ -243,8 +244,8 @@ console.log(data.value.pokemon);
       <div class=" h-full flex flex-col justify-center items-center">
         <h2 class="font-mono text-3xl md:text-7xl mb-4"> {{ pokemon.nom }}</h2>
         <div class="flex">
-          <NuxtImg :src="pokemon.types[0].image.url" :alt="pokemon.nom" class="h-16 w-16 rounded-full" />
-          <NuxtImg :src="pokemon.types[1].image.url" :alt="pokemon.nom" class="h-16 w-16 rounded-full" />
+          <NuxtImg :src="pokemon.types[0].image.url" :alt="pokemon.types[0].nom" class="h-16 w-16 rounded-full" />
+          <NuxtImg :src="pokemon.types[1].image.url" :alt="pokemon.types[1].nom" class="h-16 w-16 rounded-full" />
         </div>
       </div>
     </div>
