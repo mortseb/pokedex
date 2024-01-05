@@ -1,69 +1,15 @@
 
-<style>
-@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,300italic,500);
-
-* {
-    margin: 0px;
-    padding: 0px;
-}
-
-h1 {
-    font-family: 'Ubuntu', sans-serif;
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 120px;
-    margin: 20px 0px;
-    font-weight: 100;
-}
-
-
-.list {
-    display: inline-block;
-    margin: 0 15px;
-}
-
-.container-map {
-    position: relative;
-    max-width: 1024px;
-    max-height: 1024px;
-    margin-right: auto;
-    margin-left: auto;
-    border: 2px solid #ccc;
-    box-sizing: border-box;
-}
-
-.mappa-transparent {
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    mix-blend-mode: multiply;
-}
-
-
-.hover {
-    fill: transparent;
-    z-index: 2;
-    cursor: pointer;
-}
-
-.hover:hover {
-    fill: #1db8e8;
-    z-index: 2;
-    cursor: pointer;
-}
-
-
-@media screen and (max-width: 768px) {
-    .container-map {
-        max-width: 100vw;
-    }
-}
-</style>
-
-
+<!-- Carte de base + routes en SVG -->
 <template>
-    <div class="container-map max-w-max-content">
+    <div
+        class="max-w-max-content relative max-w-[1024px] max-h-[1024px] mx-auto border-2 border-solid border-slate-200 box-border">
+
+
+        <!-- Carte de base -->
         <img alt="" src="/svg/carte.png">
 
+
+        <!-- SVG contenant chaque route -->
         <svg class="mappa-transparent" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
 
             <NuxtLink to="/routes/1">

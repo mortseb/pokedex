@@ -1,4 +1,5 @@
 <template>
+    <!-- Fond et barre de navigation -->
     <div class="min-h-screen w-full bg-gradient-to-tr from-black via-stone-600 to-current pb-20">
         <nav class="sticky top-0 z-50 bg-black/75 backdrop-blur py-3">
             <div class="container mx-auto flex justify-center space-x-10">

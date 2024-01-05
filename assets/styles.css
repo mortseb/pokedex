@@ -1,3 +1,5 @@
+/* CSS POUR LA CARTE ET LA SECTION GSAP */
+
 .fixed-size-image {
     max-width: 100%;
     height: auto;
@@ -7,7 +9,6 @@
     position: relative;
     width: 100%;
     padding-top: (hauteur/largeur) * 100%;
-    /* Ratio de hauteur/largeur de l'image */
 }
 
 .map-image,
@@ -88,4 +89,31 @@ a {
 
 .flipped {
     transform: rotate(180deg);
+}
+
+.mappa-transparent {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    mix-blend-mode: multiply;
+}
+
+
+.hover {
+    fill: transparent;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.hover:hover {
+    fill: #1db8e8;
+    z-index: 2;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 768px) {
+    .container-map {
+        max-width: 100vw;
+    }
 }

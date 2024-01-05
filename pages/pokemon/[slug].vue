@@ -1,4 +1,5 @@
 <script setup>
+// Query pour récupérer toutes les informations des Pokemons
 const query = gql`
 query Pokemon($slug: String!) {
   pokemon(where: { slug: $slug }) {
@@ -64,38 +65,58 @@ query Pokemon($slug: String!) {
 }
 
 `;
+
+// Gestion de la couleur des onglets actifs/inactifs
 const activeTabColor = 'bg-white';
 const inactiveTabColor = 'bg-slate-00';
-const pokemon = ref();
-const sectionVisible = ref("description");
 
+
+// Gestion du contenu des onglets
+// Contenu visible par défaut
+const sectionVisible = ref("description");
+// Changement de contenu
 const showSection = (section) => {
   sectionVisible.value = section;
 };
+
+
+
+// Gestion des informations du Pokemon
+
+const pokemon = ref();
+
+// Déterminer le slug à utiliser en fonction de l'URL
 const route = useRoute();
 const { data } = await useAsyncQuery(query, {
   slug: route.params.slug,
 });
 
-console.log(data.value);
+// On enregistre les données du Pokemon
 pokemon.value = data.value.pokemon;
-console.log(data.value.pokemon);
-
 </script>
 
+
+<!-- Fiche du Pokemon -->
 <template>
+  <!-- Bordures en fonction de la couleur du Pokemon + fond de la fichess-->
   <div v-if="pokemon" :style="{ 'border-color': pokemon.couleur.hex, 'border-style': 'solid' }"
     class="flex flex-row w-full bg-slate-200 rounded py-6 sm:py-12 mt-8 h-auto rounded-3xl border-4 md:border-8">
-    <div class="flex w-auto w-1/3 p-3">
 
+    <!-- Div de l'image du Pokemon -->
+    <div class="flex w-auto w-1/3 p-3">
       <NuxtImg :src="pokemon.artwork.url" :alt="pokemon.nom"
         class="h-fit w-full rounded-xl shadow-lg md:ml-12 md:mr-12" />
     </div>
+
+    <!-- Div des informations sur le Pokemon -->
     <div class="flex flex-col w-2/3">
+      <!-- Onglets de navigation de la fiche -->
       <div class=" flex justify-center items-start">
+        <!-- On détermine quel contenu afficher et que l'onglet est actif -->
         <button @click="showSection('description')"
           :class="[sectionVisible === 'description' ? activeTabColor : inactiveTabColor, 'text-black group flex items-center justify-center rounded-lg px-1 py-1 md:px-3 md:px-3 mx-2 shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)]']">
           <span class="sr-only">Home</span>
+          <!-- SVG de l'icone de l'onglet -->
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
             class="h-4 w-4 md:w-6 md:h-6 text-slate-500 group-active:scale-95"
             style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1"
@@ -107,7 +128,7 @@ console.log(data.value.pokemon);
         </button>
         <button @click="showSection('attaques')"
           :class="[sectionVisible === 'attaques' ? activeTabColor : inactiveTabColor, 'text-black group flex items-center justify-center rounded-lg px-1 py-1 md:px-3 md:px-3 mx-2 shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)]']">
-          <span class="sr-only">Account</span>
+          <span class="sr-only">Attaques</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
             class="h-4 w-4 md:w-6 md:h-6 text-slate-500 group-active:scale-95">
             <path fill-rule="evenodd"
@@ -118,7 +139,7 @@ console.log(data.value.pokemon);
 
         <button @click="showSection('localisation')"
           :class="[sectionVisible === 'localisation' ? activeTabColor : inactiveTabColor, 'text-black group flex items-center justify-center rounded-lg px-1 py-1 md:px-3 md:px-3 mx-2 shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)]']">
-          <span class="sr-only">Explore</span>
+          <span class="sr-only">Localisation</span>
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
             class="h-4 w-4 md:w-6 md:h-6 text-slate-500 group-active:scale-95" xmlns:xlink="http://www.w3.org/1999/xlink"
             viewBox="0 0 511.953 511.953" xml:space="preserve">
@@ -140,7 +161,7 @@ console.log(data.value.pokemon);
 
         <button @click="showSection('informations')"
           :class="[sectionVisible === 'informations' ? activeTabColor : inactiveTabColor, 'text-black group flex items-center justify-center rounded-lg px-1 py-1 md:px-3 md:px-3 mx-2 shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)]']">
-          <span class="sr-only">Notifications</span>
+          <span class="sr-only">Informations</span>
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
             class="h-4 w-4 md:w-6 md:h-6 text-slate-500 group-active:scale-95" xmlns:xlink="http://www.w3.org/1999/xlink"
             viewBox="0 0 512 512" xml:space="preserve">
@@ -159,7 +180,7 @@ console.log(data.value.pokemon);
         </button>
         <button @click="showSection('pays')"
           :class="[sectionVisible === 'pays' ? activeTabColor : inactiveTabColor, 'text-black group flex items-center justify-center rounded-lg px-1 py-1 md:px-3 md:px-3 mx-2 shadow-[-2px_-2px_10px_rgba(255,255,255,1),3px_3px_10px_rgba(0,0,0,0.2)] active:shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.7),inset_3px_3px_5px_rgba(0,0,0,0.1)]']">
-          <span class="sr-only">Settings</span>
+          <span class="sr-only">Pays</span>
           <svg fill="currentColor" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" enable-background="new 0 0 512 512"
             xml:space="preserve" class="h-4 w-4 md:w-6 md:h-6 text-slate-500 group-active:scale-95">

@@ -1,11 +1,11 @@
 <script setup>
 
-
+// Imports pour les animations au scroll
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { onMounted } from 'vue';
 
 
+//Query combinée pour récupérer les informations des Pokemon et les informations des types séparément
 const query = gql`
 query Combined {
   pokemonsData: pokemons(first: 150) {
@@ -60,6 +60,7 @@ query Combined {
 }
 `;
 
+
 const pokemons = ref();
 const types = ref();
 const selectedTypes = ref([]);
@@ -68,13 +69,17 @@ const filteredPokemons = ref([]);
 const searchQuery = ref('');
 
 
+// On récupère les informations de la query dans 2 constantes distinctes
 const { data } = await useAsyncQuery(query);
 pokemons.value = data.value.pokemonsData;
 types.value = data.value.typesData;
 
 
+// Tableau dynamique qui enregistre ou supprime les types sélectionnés
 const toggleTypeSelection = (type) => {
   const index = selectedTypes.value.indexOf(type);
+
+  // Vérifications si on peut ajouter des types
   if (index >= 0) {
     selectedTypes.value.splice(index, 1);
   } else {
@@ -85,7 +90,16 @@ const toggleTypeSelection = (type) => {
   }
 };
 
+// Gestion de la suppression d'un type lors de la recherche
+const removeType = (typeToRemove) => {
+  const index = selectedTypes.value.indexOf(typeToRemove);
+  if (index > -1) {
+    selectedTypes.value.splice(index, 1);
+  }
+};
 
+
+// Toggle de sélection de types ( et = le pokemon doit avoir ces types, ou = le pokemon doit avoir au moins 1 de ces types)
 const toggleSelectionMode = () => {
   if (selectionMode.value === 'ou') {
     selectedTypes.value = [];
@@ -94,6 +108,7 @@ const toggleSelectionMode = () => {
 };
 
 
+// Animations GSAP au scroll
 onMounted(() => {
   gsap.registerPlugin(ScrollTrigger);
 
@@ -114,10 +129,9 @@ onMounted(() => {
 
 });
 
-
+// Gestion de la navigation automatique jusqu'à la liste
 const scrollToPokedex = (event) => {
   event.preventDefault();
-
   setTimeout(() => {
     const pokedexContainer = document.getElementById('pokedexContainer');
     if (pokedexContainer) {
@@ -127,13 +141,8 @@ const scrollToPokedex = (event) => {
 };
 
 
-const removeType = (typeToRemove) => {
-  const index = selectedTypes.value.indexOf(typeToRemove);
-  if (index > -1) {
-    selectedTypes.value.splice(index, 1);
-  }
-};
 
+// Gestion dynamique des résultats de la recherche
 watch([selectedTypes, searchQuery], () => {
   let tempFiltered = pokemons.value;
 
@@ -157,6 +166,7 @@ watch([selectedTypes, searchQuery], () => {
 
 </script>
 <template>
+  <!-- Bouton de navigation jusqu'à la liste -->
   <div class="fixed top-1/2 right-5 z-50">
     <a href="#" ref="scrollArrow" @click="scrollToPokedex"
       class="text-white text-4xl bg-blue-500 hover:bg-blue-600 p-2 rounded-full shadow-lg">
@@ -164,7 +174,7 @@ watch([selectedTypes, searchQuery], () => {
     </a>
   </div>
 
-
+  <!-- Banniere et titre -->
   <div class="h-[500px] overflow-hidden h-screen w-full flex items-center justify-center ">
     <div class="absolute inset-0 bg-cover bg-center w-full" style="background-image: url('/banner.png');"></div>
 
@@ -180,12 +190,10 @@ watch([selectedTypes, searchQuery], () => {
     <!-- Dégradé à droite -->
     <div class="absolute top-0 bottom-0 right-0 w-1/3 bg-gradient-to-l from-[#000000] to-transparent"></div>
 
+    <!-- Titre -->
     <div class="absolute inset-0 flex justify-center items-center">
       <div class="bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg p-5 rounded-lg">
         <h1 class="text-5xl md:text-9xl  font-bold text-white">MythiDex</h1>
-
-
-
       </div>
 
     </div>
@@ -194,39 +202,46 @@ watch([selectedTypes, searchQuery], () => {
 
 
 
-
+  <!-- Section de présentation du site -->
   <div class="containergsap h-auto my-16 w-full">
     <h1 class="text uppercase">pokédex<span class="uppercase">PLUS DE 50 pokémons</span></h1>
     <h1 class="text">MONDIAL<span class="uppercase">1 POKéMON = 1 PAYS</span></h1>
-    <h1 class="text uppercase">CRéé PAR IA.<span class="uppercase">POKéMONS PAR CHATGPT</span></h1>
-    <br> <br> <br> <br>
-    <h1 class="text">SAFARI MORTSEB<span>
+    <h1 class="text uppercase">CRéé PAR IA.<span class="uppercase">POKéMONS PAR CHATGPT</span></h1> <br> <br> <br> <br>
+
+    <!-- Liens vers la carte / la liste -->
+    <h1 class="text">SAFARI MORTSEB
+      <span>
         <NuxtLink to="/carte/">
           CARTE
         </NuxtLink>
-
-      </span></h1>
-    <h1 class="text">REGISTRE<span><a href="#" @click="scrollToPokedex">LISTE DES CREATURES</a></span></h1>
-
+      </span>
+    </h1>
+    <h1 class="text">REGISTRE
+      <span>
+        <a href="#" @click="scrollToPokedex">LISTE DES CREATURES</a>
+      </span>
+    </h1>
   </div>
+
+
+  <!-- Zone de recherche -->
   <div class="container mx-auto p-4 shadow-lg rounded-lg pb-96 bg-cover bg-center w-full md:h-[1232px]"
     style="background-image: url('/search-bg.png');" id="pokedexContainer">
+    <!-- Fond blanc - Div global -->
     <div class="bg-white/30 backdrop-blur p-4 md:h-[1200px] shadow-lg rounded-lg">
-
-
-
-
-
+      <!-- Fond noir - Div des éléments de recherche -->
       <div class="bg-black/80 backdrop-blur p-4 pb-0 rounded-3xl h-fit mb-8">
         <div class="selected-types flex items-center justify-center p-4">
-          <div class="w-2/3 max-w-md text-center"> <!-- Conteneur avec une largeur maximale -->
+          <div class="w-2/3 max-w-md text-center">
+            <!-- Barre de recherche -->
             <div class="search-bar">
               <input v-model="searchQuery" type="text" placeholder="Rechercher un Pokémon..."
                 class="rounded-3xl pl-2 w-full">
-              <!-- Barre de recherche prenant toute la largeur du conteneur -->
             </div>
-            <h1 class="text-2xl font-semibold mt-3">Types :</h1>
-            <div class="flex flex-wrap justify-center mt-2"> <!-- Centrer les types sélectionnés -->
+
+            <!-- Liste des types sélectionnés -->
+            <h1 class="text-2xl font-semibold mt-3 text-white">Types :</h1>
+            <div class="flex flex-wrap justify-center mt-2">
               <div v-for="types in selectedTypes" :key="types"
                 class="bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded flex items-center mb-2">
                 <div class="cursor-pointer mr-1" @click="removeType(types)">✕</div>
@@ -236,6 +251,7 @@ watch([selectedTypes, searchQuery], () => {
           </div>
         </div>
 
+        <!-- Toggle - recherche par type ET/OU -->
         <div class="flex flex-row md:flex-row justify-center md:w-full mb-8 ">
           <div class="flex flex-row md:flex-row justify-center bg-white w-fit p-4 rounded-3xl">
             <div class="text-sm font-medium mr-2">ET</div>
@@ -249,6 +265,7 @@ watch([selectedTypes, searchQuery], () => {
           </div>
         </div>
 
+        <!-- Liste des types sélectionnables -->
         <div class="flex flex-col md:flex-col divide-y-4">
           <div class="flex flex-wrap w-full md:w-full h-fit pb-8">
             <div v-for="typedata in types" :key="typedata.nom" class="w-1/2 md:w-1/6 p-2">
@@ -266,6 +283,8 @@ watch([selectedTypes, searchQuery], () => {
           </div>
         </div>
       </div>
+
+      <!-- Résultats de la recherche - Liste pleine si pas de recherche -->
       <div class="w-full md:w-full pt-8 h-[580px] overflow-auto">
         <ul class="flex flex-wrap justify-center">
           <li v-for="pokemon in filteredPokemons" :key="pokemon.id" class="m-2 w-32  md:w-1/6">
