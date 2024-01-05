@@ -84,11 +84,12 @@ console.log(data.value.pokemon);
 </script>
 
 <template>
-  <div v-if="pokemon" :style="{ 'border-color': pokemon.couleur.hex, 'border-style': 'solid', 'border-width': '15px' }"
-    class="flex flex-row w-full bg-slate-200 rounded py-6 sm:py-12 mt-8 h-[600px] rounded-3xl">
+  <div v-if="pokemon" :style="{ 'border-color': pokemon.couleur.hex, 'border-style': 'solid' }"
+    class="flex flex-row w-full bg-slate-200 rounded py-6 sm:py-12 mt-8 h-auto rounded-3xl border-4 md:border-8">
     <div class="flex w-auto w-1/3 p-3">
 
-      <NuxtImg :src="pokemon.artwork.url" :alt="pokemon.nom" class="h-full w-full rounded-xl shadow-lg ml-12 mr-12" />
+      <NuxtImg :src="pokemon.artwork.url" :alt="pokemon.nom"
+        class="h-fit w-full rounded-xl shadow-lg md:ml-12 md:mr-12" />
     </div>
     <div class="flex flex-col w-2/3">
       <div class=" flex justify-center items-start">
@@ -203,7 +204,7 @@ console.log(data.value.pokemon);
       <div>
 
         <div
-          class="flex p-3 md:px-12 bg-white rounded-lg shadow overflow-auto h-auto max-h-16 sd:max-h-32 md:max-h-96 mt-3 mr-3">
+          class="flex p-3 md:px-12 text-sm bg-white rounded-lg shadow overflow-auto h-auto max-h-24 sd:max-h-32 md:max-h-96 mt-3 mr-3 mb-3">
           <div v-if="sectionVisible === 'description'">
             <h3 class="font-mono md:text-lg"> {{ pokemon.description }}</h3>
           </div>
@@ -251,10 +252,12 @@ console.log(data.value.pokemon);
         </div>
       </div>
       <div class=" h-full flex flex-col justify-center items-center">
-        <h2 class="font-mono text-3xl md:text-7xl mb-4"> {{ pokemon.nom }}</h2>
+        <h2 class="font-mono text-sm md:text-3xl md:text-7xl mb-4"> {{ pokemon.nom }}</h2>
         <div class="flex">
-          <NuxtImg :src="pokemon.types[0].image.url" :alt="pokemon.types[0].nom" class="h-16 w-16 rounded-full" />
-          <NuxtImg :src="pokemon.types[1].image.url" :alt="pokemon.types[1].nom" class="h-16 w-16 rounded-full" />
+          <NuxtImg :src="pokemon.types[0].image.url" :alt="pokemon.types[0].nom"
+            class="h-8 w-8 md:h-16 md:w-16 rounded-full" />
+          <NuxtImg :src="pokemon.types[1].image.url" :alt="pokemon.types[1].nom"
+            class="h-8 w-8 md:h-16 md:w-16 rounded-full" />
         </div>
       </div>
     </div>

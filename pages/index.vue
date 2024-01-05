@@ -198,7 +198,7 @@ watch([selectedTypes, searchQuery], () => {
   <div class="containergsap h-auto my-16 w-full">
     <h1 class="text uppercase">pokédex<span class="uppercase">PLUS DE 50 pokémons</span></h1>
     <h1 class="text">MONDIAL<span class="uppercase">1 POKéMON = 1 PAYS</span></h1>
-    <h1 class="text uppercase">CRéé PAR IA.<span class="uppercase">POKéMONS GéNéRéS PAR CHATGPT</span></h1>
+    <h1 class="text uppercase">CRéé PAR IA.<span class="uppercase">POKéMONS PAR CHATGPT</span></h1>
     <br> <br> <br> <br>
     <h1 class="text">SAFARI MORTSEB<span>
         <NuxtLink to="/carte/">
