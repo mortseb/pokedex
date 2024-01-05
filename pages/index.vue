@@ -165,6 +165,7 @@ watch([selectedTypes, searchQuery], () => {
 }, { deep: true, immediate: true });
 
 </script>
+<style></style>
 <template>
   <!-- Bouton de navigation jusqu'à la liste -->
   <div class="fixed top-1/2 right-5 z-50">
@@ -192,8 +193,8 @@ watch([selectedTypes, searchQuery], () => {
 
     <!-- Titre -->
     <div class="absolute inset-0 flex justify-center items-center">
-      <div class="bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg p-5 rounded-lg">
-        <h1 class="text-5xl md:text-9xl  font-bold text-white">MythiDex</h1>
+      <div class="bg-black/30 backdrop-filter backdrop-blur-lg p-5 rounded-full">
+        <h1 class="text-5xl md:text-9xl  font-bold text-white titresite">MythiDex</h1>
       </div>
 
     </div>

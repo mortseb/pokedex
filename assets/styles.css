@@ -1,8 +1,13 @@
 /* CSS POUR LA CARTE ET LA SECTION GSAP */
+@import url('https://fonts.googleapis.com/css2?family=Afacad:wght@500&display=swap');
 
 .fixed-size-image {
     max-width: 100%;
     height: auto;
+}
+
+.titresite {
+    font-family: Afacad;
 }
 
 .map-container {
