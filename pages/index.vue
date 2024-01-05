@@ -239,20 +239,12 @@ watch([selectedTypes, searchQuery], () => {
                 class="rounded-3xl pl-2 w-full">
             </div>
 
-            <!-- Liste des types sélectionnés -->
-            <h1 class="text-2xl font-semibold mt-3 text-white">Types :</h1>
-            <div class="flex flex-wrap justify-center mt-2">
-              <div v-for="types in selectedTypes" :key="types"
-                class="bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded flex items-center mb-2">
-                <div class="cursor-pointer mr-1" @click="removeType(types)">✕</div>
-                {{ types }}
-              </div>
-            </div>
+
           </div>
         </div>
 
         <!-- Toggle - recherche par type ET/OU -->
-        <div class="flex flex-row md:flex-row justify-center md:w-full mb-8 ">
+        <div class="flex flex-row md:flex-row justify-center md:w-full mt-8 mb-4 ">
           <div class="flex flex-row md:flex-row justify-center bg-white w-fit p-4 rounded-3xl">
             <div class="text-sm font-medium mr-2">ET</div>
             <label class="relative inline-flex items-center cursor-pointer mx-2">
@@ -280,6 +272,14 @@ watch([selectedTypes, searchQuery], () => {
                 </label>
               </div>
             </div>
+          </div>
+        </div>
+        <!-- Liste des types sélectionnés -->
+        <div class="flex flex-wrap justify-center mt-2">
+          <div v-for="types in selectedTypes" :key="types"
+            class="bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded flex items-center mb-2">
+            <div class="cursor-pointer mr-1" @click="removeType(types)">✕</div>
+            {{ types }}
           </div>
         </div>
       </div>
