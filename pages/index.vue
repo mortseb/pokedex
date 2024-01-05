@@ -267,7 +267,7 @@ watch([selectedTypes, searchQuery], () => {
                 <label :for="'checkbox-' + typedata.nom" class="flex items-center cursor-pointer p-4 "
                   :class="{ ' rounded-lg shadow hover:shadow-md transition duration-300 bg-green-300 border-green-500': selectedTypes.includes(typedata.nom) }">
                   <img :src="typedata.image.url" :alt="typedata.nom" class="w-8 h-8 rounded-full mr-3 object-cover">
-                  <div class="text-bg md:text-xl font-medium">{{ typedata.nom }}</div>
+                  <div class="text-sm md:text-xl font-medium">{{ typedata.nom }}</div>
 
                 </label>
               </div>
@@ -288,9 +288,9 @@ watch([selectedTypes, searchQuery], () => {
       <div class="w-full md:w-full pt-8 h-[580px] overflow-auto">
         <ul class="flex flex-wrap justify-center">
           <li v-for="pokemon in filteredPokemons" :key="pokemon.id" class="m-2 w-32  md:w-1/6">
-            <NuxtLink :to="`/pokemon/${pokemon.slug}`" class="block" target="_blank">
+            <NuxtLink :to="`/pokemon/${pokemon.slug}`" class="block">
               <div
-                class="flex flex-col items-center overflow-hidden rounded-lg shadow-md bg-black p-2 hover:bg-gray-100 transition duration-300">
+                class="flex flex-col items-center overflow-hidden rounded-lg shadow-md bg-white/50 p-2 hover:bg-gray-100 transition duration-300">
                 <NuxtImg :src="pokemon.artwork.url" :alt="pokemon.nom"
                   class="flex w-auto item-center h-auto object-cover transition duration-300" />
                 <div class="text-center ">

@@ -40,12 +40,12 @@ watch(() => data.value, (newValue) => {
 <template>
   <!-- Affichage du nom de la route et de ses Pokemons -->
   <div v-if="routeDetails && routeDetails.pokemons">
-    <h1> {{ routeDetails.nom }}</h1>
+    <h1 class="text"> {{ routeDetails.nom }}</h1>
     <div class="pokemons-container flex flex-wrap flex-col md:flex-row">
 
       <!-- Carte du Pokemon -->
       <div v-for="pokemon in routeDetails.pokemons" :key="pokemon.slug"
-        class="pokemon-card m-6 h-32 w-32 rounded hover:blur-none transitionshadow-md bg-black hover:bg-gray-100 transition-opacity duration-1500">
+        class="pokemon-card m-6 h-32 w-32 rounded-lg hover:blur-none transitionshadow-md bg-black hover:bg-gray-100 transition-opacity duration-1500">
         <NuxtLink :to="`/pokemon/${pokemon.slug}`" class="block cursor-pointer">
           <div
             class="flex flex-col items-center overflow-hidden rounded-lg shadow-md bg-black hover:bg-gray-100 transition-opacity duration-1500">
