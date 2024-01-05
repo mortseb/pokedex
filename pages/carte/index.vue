@@ -1,6 +1,7 @@
 
-<!-- Carte de base + routes en SVG -->
 <template>
+    <!-- Carte de base + routes en SVG -->
+
     <div
         class="max-w-max-content relative max-w-[1024px] max-h-[1024px] mx-auto border-2 border-solid border-slate-200 box-border">
 

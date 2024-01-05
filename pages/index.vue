@@ -288,7 +288,7 @@ watch([selectedTypes, searchQuery], () => {
       <div class="w-full md:w-full pt-8 h-[580px] overflow-auto">
         <ul class="flex flex-wrap justify-center">
           <li v-for="pokemon in filteredPokemons" :key="pokemon.id" class="m-2 w-32  md:w-1/6">
-            <NuxtLink :to="`/pokemon/${pokemon.slug}`" class="block">
+            <NuxtLink :to="`/pokemon/${pokemon.slug}`" class="block" target="_blank">
               <div
                 class="flex flex-col items-center overflow-hidden rounded-lg shadow-md bg-black p-2 hover:bg-gray-100 transition duration-300">
                 <NuxtImg :src="pokemon.artwork.url" :alt="pokemon.nom"

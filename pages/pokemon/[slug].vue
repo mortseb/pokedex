@@ -96,8 +96,9 @@ pokemon.value = data.value.pokemon;
 </script>
 
 
-<!-- Fiche du Pokemon -->
 <template>
+  <!-- Fiche du Pokemon -->
+
   <!-- Bordures en fonction de la couleur du Pokemon + fond de la fichess-->
   <div v-if="pokemon" :style="{ 'border-color': pokemon.couleur.hex, 'border-style': 'solid' }"
     class="flex flex-row w-full bg-slate-200 rounded py-6 sm:py-12 mt-8 h-auto rounded-3xl border-4 md:border-8">
